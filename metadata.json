@@ -1,0 +1,8 @@
+{
+  "name": "Escola Bíblica EAD",
+  "description": "Sistema de Gestão Escolar (LMS/ERP) para Escola Bíblica com gestão de cursos, professores, alunos e secretaria.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

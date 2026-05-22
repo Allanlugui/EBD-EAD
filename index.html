@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escola Bíblica EAD - Gestão</title>
+    <!-- CRITICAL FIX: Block Service Worker to prevent Firebase Storage CORS errors -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        // 1. Block any attempt to register a Service Worker
+        navigator.serviceWorker.register = function() { 
+          console.warn("🚫 Service Worker registration blocked to ensure Firebase Storage compatibility."); 
+          return Promise.reject(new Error("Service Worker blocked by app policy")); 
+        };
+        
+        // 2. Unregister any existing Service Workers immediately
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          for(let registration of registrations) { 
+            console.log("🧹 Unregistering interfering Service Worker:", registration.scope);
+            registration.unregister(); 
+          }
+        });
+      }
+    </script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      /* Custom scrollbar for a cleaner admin feel */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+    </style>
+    <link rel="stylesheet" href="/src/index.css">
+  </head>
+  <body class="bg-slate-50 text-slate-900 overflow-x-hidden">
+    <div id="root"></div>
+  <script type="module" src="/src/index.tsx"></script>
+</body>
+</html>
